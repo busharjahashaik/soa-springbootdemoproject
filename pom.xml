@@ -12,7 +12,11 @@
 	<artifactId>SpringBootDemoProject</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>SpringBootDemoProject</name>
+<<<<<<< HEAD
 	<description>SpringBoot Demo Project</description>
+=======
+	<description/>
+>>>>>>> 2daa4c55ca9965378e15e38f58ddc768da0281fa
 	<url/>
 	<licenses>
 		<license/>
@@ -32,6 +36,13 @@
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
+<<<<<<< HEAD
+=======
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+>>>>>>> 2daa4c55ca9965378e15e38f58ddc768da0281fa
 			<artifactId>spring-boot-starter-webmvc</artifactId>
 		</dependency>
 
