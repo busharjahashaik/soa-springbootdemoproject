@@ -22,82 +22,86 @@ import com.klef.soa.service.PatientService;
 @RequestMapping("/patient")
 public class PatientController
 {
-	@Autowired
-	private PatientService service;
+  @Autowired
+  private PatientService service;
 
-	@GetMapping("/")
-	public String test()
-	{
-		return "SOA Programming & MicroServices";
-	}
+  @GetMapping("/")
+  public String test()
+  {
+    return "SOA Programming & MicroServices";
+  }
 
-	// Add Patient
-	@PostMapping("/add") 
-	public ResponseEntity<Patient> addpatient(@RequestBody Patient p) 
-	{ 
-		Patient patient = service.addPatient(p); 
-		return ResponseEntity.status(201).body(patient); 
-	}
+  // Add Patient
+  @PostMapping("/add") 
+  public ResponseEntity<Patient> addpatient(@RequestBody Patient p) 
+  { 
+    Patient patient = service.addPatient(p); 
+    return ResponseEntity.status(201).body(patient); 
+  }
 
-	// Display All Patients
-	@GetMapping("/displayall")
-	public ResponseEntity<List<Patient>> displayAllPatients()
-	{
-		List<Patient> patients = service.displayAllPatients(); 
-		return ResponseEntity.status(200).body(patients);
-	}
+  // Display All Patients
+  @GetMapping("/displayall")
+  public ResponseEntity<List<Patient>> displayAllPatients()
+  {
+    List<Patient> patients = service.displayAllPatients(); 
+    return ResponseEntity.status(200).body(patients);
+  }
 
-	// Display Patient By ID
-	@GetMapping("/display")
-	public ResponseEntity<?> displayPatientById(@RequestParam Long id)
-	{
-		Patient patient = service.displayPatientById(id);
+  // Display Patient By ID
+  @GetMapping("/display")
+  public ResponseEntity<?> displayPatientById(@RequestParam Long id)
+  {
+    Patient patient = service.displayPatientById(id);
 
-		if(patient != null)
-		{
-			return ResponseEntity.status(200).body(patient);
-		}
-		else
-		{
-			return ResponseEntity.status(404).body("Patient ID Not Found");
-		}
-	}
+    if(patient != null)
+    {
+      return ResponseEntity.status(200).body(patient);
+    }
+    else
+    {
+      return ResponseEntity.status(404).body("Patient ID Not Found");
+    }
+  }
 
-	// Update Patient
-	@PutMapping("/update")
-	public ResponseEntity<?> updatePatient(@RequestBody Patient patient)
-	{
-		Patient p = service.updatePatient(patient);
+  // Update Patient
+  @PutMapping("/update")
+  public ResponseEntity<?> updatePatient(@RequestBody Patient patient)
+  {
+    Patient p = service.updatePatient(patient);
 
-		if(p != null)
-		{
-			return ResponseEntity.ok(p);
-		}
-		else
-		{
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Patient ID Not Found");
-		}
-	}
-	// Delete Patient By ID
-	@DeleteMapping("/delete/{id}")
-	public ResponseEntity<String> deletePatientById(@PathVariable Long id)
-	{
-		String message = service.deletePatientById(id);
+    if(p != null)
+    {
+      return ResponseEntity.ok(p);
+    }
+    else
+    {
+      return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Patient ID Not Found");
+    }
+  }
+
+  // Delete Patient By ID
+  @DeleteMapping("/delete/{id}")
+  public ResponseEntity<String> deletePatientById(@PathVariable Long id)
+  {
+    String message = service.deletePatientById(id);
 
         return new ResponseEntity<>(message, HttpStatus.OK);
-		
-	}
-	// Display Patients By Gender
-	@GetMapping("/displaybygender/{gender}")
-	public ResponseEntity<List<Patient>> displayPatientsByGender(@PathVariable String gender)
-	{
-		List<Patient> patients = service.displayPatientsByGender(gender);
-		return ResponseEntity.status(200).body(patients);
-	}
-	@GetMapping("/count")
-	public ResponseEntity<String> displaypatientcount() {
-		Long count=service.displayPatientCount();
-		String msg="Total Patients="+count;
-		return ResponseEntity.ok(msg);
-	}
+    
+  }
+
+  // Display Patients By Gender
+  @GetMapping("/displaybygender/{gender}")
+  public ResponseEntity<List<Patient>> displayPatientsByGender(@PathVariable String gender)
+  {
+    List<Patient> patients = service.displayPatientsByGender(gender);
+    return ResponseEntity.status(200).body(patients);
+  }
+  @GetMapping("/count")
+  public ResponseEntity<String> diaplaypatientcount()
+  {
+    Long count=service.displayPatientCount();
+    String msg="Total Patients="+count;
+    return ResponseEntity.ok(msg);
+  }
+  
 }
